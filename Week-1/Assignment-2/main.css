@@ -1,0 +1,67 @@
+html{ 
+    border: 2px solid black;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+body {
+    margin: auto;
+}
+
+.title_menu {
+    background-color: Gainsboro; 
+    overflow: hidden;
+}
+
+.title {
+    float: left;
+    margin: 10px 10px;
+}
+
+.allmenu {
+    display: flex;
+    float: right;
+}
+
+.allmenu div {
+    margin: 10px 20px;
+}
+
+.main_message {
+    background-color: aliceblue;
+    text-align: center;
+    padding: 100px;
+    font-size: 50px;
+    font-weight:bold;
+}
+
+#second_message {
+    text-align: center;
+}
+
+.allbox {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.allbox div {
+    margin: 10px; 
+    padding: 0px 180px; 
+    height: 150px; 
+    background-color: LightSlateGray;
+}
+
+.foot {
+    text-align: center;
+}
+
+.foot div{
+    background-color: aliceblue;
+    margin: 20px;
+    padding: 20px;
+    display: inline-block;
+}
+
+
+
