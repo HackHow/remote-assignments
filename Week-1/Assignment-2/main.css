@@ -33,6 +33,7 @@ body {
     padding: 100px;
     font-size: 50px;
     font-weight:bold;
+    font-weight: bold;
 }
 
 #second_message {
@@ -46,8 +47,11 @@ body {
 }
 
 .allbox div {
+.allbox div  {
+    text-align: center;
     margin: 10px; 
     padding: 0px 180px; 
+    padding: 10px 200px; 
     height: 150px; 
     background-color: LightSlateGray;
 }
