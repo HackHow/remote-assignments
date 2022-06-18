@@ -3,7 +3,7 @@
 function count(input) {
     let result = {};
     for (const num of input) {
-        result[num] = (result[num] || 0) + 1; // because of result[num] = undefined, assign 0 to result[num]
+        result[num] = (result[num] || 0) + 1; // because of result[num] = undefined, assigned 0 to result[num]
     }                                         // is equivalent to "result[num] = result[num] ? result[num] + 1 : 1;"
     return result;
 }
