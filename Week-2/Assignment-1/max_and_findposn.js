@@ -12,7 +12,6 @@ function max(numbers) {
     return val;
   }
 
-
 /*2. findPosition: find the first position of the target number inside an array of numbers. 
 The position should be counted starting from 0, if you can't find the target, please return -1 */
 
