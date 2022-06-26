@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="demo">
+      <h1>This is my fisrt AJAX project</h1>
+      <label>Please input positive number</label><br /><br />
+      <input type="text" id="number" /><br /><br />
+      <button type="button" onclick="clickButton()">Change Content</button>
+    </div>
+    <script>
+      function clickButton() {
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            document.getElementById("demo").innerHTML = xhr.responseText;
+          }
+        };
+        const input = document.getElementById("number").value;
+        const url = "http://localhost:3000/data?number=" + input;
+
+        xhr.open("GET", url);
+        xhr.send();
+      }
+    </script>
+  </body>
+</html>
