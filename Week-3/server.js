@@ -13,25 +13,25 @@ app.get("/", (req, res) => {
 
 // Create a server object on '/data' URL
 app.get("/data", (req, res) => {
-  const number = Number(req.query.number);
-  // determine condition: sum of number if number exists and is a integer or natual number
-  if (!number && !isNaN(number) && number != 0) {
-    console.log("input a parameter");
-    res.send("Lack of Parameter");
-  } else if (!Number.isInteger(number)) {
-    console.log("input a integer or natural number");
-    res.send("Wrong Parameter");
-  } else {
-    let sum = 0;
-    if (number >= 0) {
+  numValue = req.query.number;
+  numValueLen = numValue.length;
+  // 透過 req.query 抓出來的值，type 會是 string，所以先判斷 string 是否為空值，若不為空，再將其轉為 number
+  if (numValueLen != 0) {
+    const number = Number(numValue);
+    if (!Number.isInteger(number)) {
+      console.log("input a integer or natural number");
+      res.send("Wrong Parameter");
+    } else {
+      let sum = 0;
       for (let i = 1; i <= number; i++) {
         sum += i;
       }
       console.log("The sum of number is successful");
       res.send(`sum of number = <mark>${sum}<mark>`);
-    } else {
-      res.send("Please input a integer greater than 0");
     }
+  } else {
+    console.log("input a parameter");
+    res.send("Lack of Parameter");
   }
 });
 
