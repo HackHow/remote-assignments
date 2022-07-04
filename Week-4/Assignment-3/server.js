@@ -3,8 +3,8 @@ const mysql = require("mysql");
 const bodyParser = require("body-parser");
 // 因為 alert() 不能在 node.js 使用，所以需要載入 alert 套件
 const alert = require("alert");
-const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+const urlencodedParser = bodyParser.urlencoded({ extended: false });
 const app = express();
 const port = 3000;
 
@@ -24,15 +24,19 @@ db.connect(function (err) {
   console.log("connected!");
 });
 
+app.get("/", (req, res) => {
+  res.send("<h1>Home Page</h1>");
+});
+
 // Create a server object on root URL
 // 如果 method 是 POST 時，代表資料會是 urlencoded type，必須使用 body-parser 套件
-app.post("/", urlencodedParser, (req, res) => {
+app.post("/signup", urlencodedParser, (req, res) => {
   console.log("email: " + req.body.email);
-  console.log("password: " + req.body.password);
+  console.log("password: " + req.body.pwd);
 
   const userEmail = req.body.email;
-  const userPwd = req.body.password;
-  const checkSql = `SELECT email FROM user where email = '${userEmail}'`;
+  const userPwd = req.body.pwd;
+  const checkSql = `SELECT email FROM user WHERE email = '${userEmail}'`;
   db.query(checkSql, (err, result) => {
     if (err) throw err;
     // 若 Table 裡面"沒有資料"或是沒有發生 "email 重複"，就匯入資料
@@ -48,6 +52,25 @@ app.post("/", urlencodedParser, (req, res) => {
     } else {
       console.log("Email already be registered");
       alert("Email already be registered");
+    }
+  });
+});
+
+app.post("/signin", urlencodedParser, (req, res) => {
+  console.log("email: " + req.body.email);
+  console.log("password: " + req.body.pwd);
+
+  const userEmail = req.body.email;
+  const userPwd = req.body.pwd;
+  const checkSql = `SELECT email FROM user WHERE email = '${userEmail}' and password = '${userPwd}'`;
+  db.query(checkSql, (err, result) => {
+    if (err) throw err;
+    // 若 Table 裡面"沒有資料"就報錯
+    if (Object.keys(result).length === 0) {
+      console.log("email/password may be wrong");
+      alert("email/password may be wrong");
+    } else {
+      res.redirect("/member");
     }
   });
 });

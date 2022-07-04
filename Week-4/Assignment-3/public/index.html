@@ -2,30 +2,103 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>NodeJs connect MySQL</title>
+    <title>Sign-Up</title>
   </head>
   <body>
-    <h2>Registration Form</h2>
-    <form action="http://localhost:3000/" method="post">
-      <div class="container">
-        <label>E-mail: </label>
-        <input
-          type="text"
-          placeholder="Enter e-mail"
-          name="email"
-          required
-        /><br /><br />
+    <h1>Sign-Up / Sign-In Form</h1>
+    <button
+      class="signupbtn"
+      onclick="SignupForm()"
+      style="width: auto; background-color: #04aa6d; padding: 14px 20px"
+    >
+      Sign Up
+    </button>
+    <button
+      class="signinbtn"
+      onclick="SigninForm()"
+      style="width: auto; background-color: #04aa6d; padding: 14px 20px"
+    >
+      Sign In
+    </button>
 
-        <label>Password: </label>
-        <input
-          type="password"
-          placeholder="Enter password"
-          name="password"
-          required
-        /><br /><br />
+    <div id="signup" class="modal" style="display: none">
+      <form action="http://localhost:3000/signup" method="post">
+        <h2>Sign Up</h2>
+        <p>Please fill in this form to create an account.</p>
+        <div class="container">
+          <label>E-mail: </label>
+          <input type="text" placeholder="Enter e-mail" name="email" required />
+          <br /><br />
 
-        <button type="submit">Submit</button>
-      </div>
-    </form>
+          <label>Password: </label>
+          <input
+            type="password"
+            placeholder="Enter password"
+            name="pwd"
+            required
+          />
+          <br /><br />
+
+          <button type="submit">Submit</button>
+          <button type="button" onclick="SignupForm()" class="cancelbtn">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div id="signin" class="modal" style="display: none">
+      <form action="http://localhost:3000/signin" method="post">
+        <h2>Sign In</h2>
+        <p>Please fill in this form your account.</p>
+        <div class="container">
+          <label><b>Email: </b></label>
+          <input type="text" placeholder="e-mail" name="email" required />
+          <br /><br />
+
+          <label><b>Password</b></label>
+          <input type="password" placeholder="password" name="pwd" required />
+          <br /><br />
+
+          <button type="submit">Login</button>
+          <button type="button" onclick="SigninForm()" class="cancelbtn">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+    <script>
+      function SignupForm() {
+        const signupId = document.getElementById("signup");
+        const signupBtn = document.getElementsByClassName("signupbtn");
+        const signinBtn = document.getElementsByClassName("signinbtn");
+
+        if (signupId.style.display === "none") {
+          signupId.style.display = "block";
+          signupBtn[0].style.visibility = "hidden";
+          signinBtn[0].style.visibility = "hidden";
+        } else {
+          signupId.style.display = "none";
+          signupBtn[0].style.visibility = "visible";
+          signinBtn[0].style.visibility = "visible";
+        }
+      }
+
+      function SigninForm() {
+        const signinId = document.getElementById("signin");
+        const signupBtn = document.getElementsByClassName("signupbtn");
+        const signinBtn = document.getElementsByClassName("signinbtn");
+
+        if (signinId.style.display === "none") {
+          signinId.style.display = "block";
+          signupBtn[0].style.visibility = "hidden";
+          signinBtn[0].style.visibility = "hidden";
+        } else {
+          signinId.style.display = "none";
+          signinBtn[0].style.visibility = "visible";
+          signupBtn[0].style.visibility = "visible";
+        }
+      }
+    </script>
   </body>
 </html>
